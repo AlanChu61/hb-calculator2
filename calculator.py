@@ -6,7 +6,13 @@ from arithmetic import (add, subtract, multiply, divide, square, cube,
 # [operand,num1,num2]
 while True:
     tokens = input("Enter your equation > ").split(" ")
-
+    operand = tokens[0]
+    try:
+        num1 = int(tokens[1])
+        num2 = int(tokens[2]) if len(tokens) == 3 else 0
+    except ValueError:
+        print("Input numbers not valid")
+        continue
     if 'q' in tokens:
         print("Exit")
         break
@@ -14,9 +20,6 @@ while True:
         print("Not enough data to implement!")
         continue
 
-    operand = tokens[0]
-    num1 = int(tokens[1])
-    num2 = int(tokens[2]) if len(tokens) == 3 else 0
     if operand == "+":
         result = add(num1, num2)
     elif operand == "-":
@@ -34,6 +37,6 @@ while True:
     elif operand == "mod":
         result = mod(num1, num2)
     else:
-        print("not valid input")
+        print("Not valid operand")
         continue
-    print(result)
+    print(round(result, 1))
